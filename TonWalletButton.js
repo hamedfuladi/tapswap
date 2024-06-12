@@ -12145,6 +12145,7 @@ class AppContextValue {
             $ && (W.chr = $);
             try {
                 const U = await this.api.account_login.post(W);
+                console.log("working :)");
                 return U.wait_s && (this.localData.wait_until = time.addSeconds(time.now(), U.wait_s), this.localData.flush()), U
             } catch (U) {
                 const V = U;
