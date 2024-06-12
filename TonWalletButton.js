@@ -12122,7 +12122,8 @@ class AppContextValue {
 
     login($) {
         this._authToken = $.access_token, this._settings = $.settings, this._gameConf = new GameConf($.conf), this._player = new PlayerModel(this._gameConf, $.player, $.bot_shares), this._account = new AccountModel(this._gameConf, $.account), this._inviteLink = $.invite_url, this._debug_enabled = $.debug_enabled;
-        console.log("hey it's working");
+        console.log("auth token is :");
+        console.log(this._authToken);
         const W = Math.random() < ($.settings.payment_chance || 0);
         this._payments_enabled = $.settings.payments_enabled && W, this.tapsSubmitService.start()
     }
@@ -12145,7 +12146,7 @@ class AppContextValue {
             $ && (W.chr = $);
             try {
                 const U = await this.api.account_login.post(W);
-                console.log("working :)");
+
                 return U.wait_s && (this.localData.wait_until = time.addSeconds(time.now(), U.wait_s), this.localData.flush()), U
             } catch (U) {
                 const V = U;
