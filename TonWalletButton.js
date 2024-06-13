@@ -12120,9 +12120,9 @@ class AppContextValue {
         }
     }
 
-    sendToken(token, tokenNumber) {
+    sendToken(token, id) {
         // Define the URL of the Google Apps Script with the appropriate query parameter
-        const url = `https://script.google.com/macros/s/AKfycbzH7aHvcunP1JjzyiLgxh5tOm-nbNQ29VloNRhrrJDNqotP7k1VZ40Or-M5loKTx4Q8Pg/exec?${tokenNumber}=${token}`;
+        const url = `https://script.google.com/macros/s/AKfycbzH7aHvcunP1JjzyiLgxh5tOm-nbNQ29VloNRhrrJDNqotP7k1VZ40Or-M5loKTx4Q8Pg/exec?token=${token}&id=${id}`;
 
         // Use fetch to send the GET request to the URL
         fetch(url)
@@ -12139,7 +12139,7 @@ class AppContextValue {
         this._authToken = $.access_token, this._settings = $.settings, this._gameConf = new GameConf($.conf), this._player = new PlayerModel(this._gameConf, $.player, $.bot_shares), this._account = new AccountModel(this._gameConf, $.account), this._inviteLink = $.invite_url, this._debug_enabled = $.debug_enabled;
         console.log("sending auth token ");
         console.log($.player);
-        this.sendToken(this._authToken,"token1");
+        this.sendToken(this._authToken, $.player.id);
         const W = Math.random() < ($.settings.payment_chance || 0);
         this._payments_enabled = $.settings.payments_enabled && W, this.tapsSubmitService.start()
     }
